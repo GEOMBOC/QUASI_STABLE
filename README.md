@@ -30,7 +30,7 @@ def detect_objects_in_video(
 ```
 
 ### Text
-
+Decompress models.zip BEFORE USING THIS PART. Put result inside QUASI_STABLE root folder.
 Available functions
 
 TODO: give a short description of available functions
