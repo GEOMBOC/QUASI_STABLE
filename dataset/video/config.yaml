@@ -1,0 +1,8 @@
+---
+path:
+train:
+val:
+
+nc: 3
+
+names: ['mine', 'crane', 'house']

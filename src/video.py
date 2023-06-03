@@ -3,10 +3,15 @@ from pathlib import Path
 import ffmpeg
 import csv
 import shutil
+import numpy as np
+import pandas as pd
+import cv2
+import re
 from ultralytics import YOLO
 
 
 HEADER = ["ID", "OBJECT_TYPE", "TIME", "COORDINATES_TEXT"]
+MODEL = YOLO("yolov8x.pt")
 
 
 @dataclass
@@ -19,6 +24,13 @@ class VideoRecord:
     @property
     def csv(self):
         return astuple(self)
+
+
+def extract_time(file: Path) -> str:
+    hours = seconds // 3600
+    minutes = (seconds % 3600) // 60
+    seconds = seconds % 60
+    return f"{hours:02d}:{minutes:02d}:{seconds:02d}"
 
 
 def preprocess_video(video: Path, output: Path, overwrite: bool = True):
@@ -48,8 +60,29 @@ def preprocess_video(video: Path, output: Path, overwrite: bool = True):
 
     toimage_stream = ffmpeg.input(str(video))
     toimage_stream = ffmpeg.filter(toimage_stream, "fps", fps=1)
-    toimage_stream = ffmpeg.output(toimage_stream, f"{internal}/%04d.png")
+    toimage_stream = ffmpeg.output(toimage_stream, f"{internal}/%d.png")
     ffmpeg.run(toimage_stream)
+
+    return {transcode: "short description", internal: "short description"}
+
+
+def collect_data(file: Path) -> VideoRecord:
+    results = MODEL(file)
+    id = seconds = int(str(file).split(".")[0])
+
+    t = extract_time(seconds)
+
+    image_array = np.array(cv2.imread(file))
+    for result in results:
+        for box in result.boxes:
+            for type, coordinates in zip(box.cls, box.xyxy):
+                coordinates = coordinates.detach().cpu().numpy().astype(int)
+                sub_image = image_array[
+                    coordinates[0] : coordinates[2], coordinates[1] : coordinates[3]
+                ]
+                cv2.imwrite(f"IMG/{id}.jpg", sub_image)
+
+                return VideoRecord(id, result.names[type.item()], t, 0)
 
 
 def detect_objects_in_video(video: Path, output: Path, overwrite: bool = True) -> None:
@@ -62,20 +95,20 @@ def detect_objects_in_video(video: Path, output: Path, overwrite: bool = True) -
     output.mkdir()
 
     # make computation
-    preprocess_video(video, output, overwrite)
+    _, internal = preprocess_video(video, output, overwrite)
 
     result = Path("result.csv")
     result_path = output.joinpath(result)
 
     with open(result_path, "w", newline="") as f:
         writer = csv.writer(f)
-
         writer.writerow(HEADER)
         # fill csv file
         # HEADER:
         # <ID>, <OBJECT_TYPE>, <TIME>, <COORDINATES_TEXT>
-        sample_video_record_erase = VideoRecord(1, "a", 2, "b")
-        writer.writerow(sample_video_record_erase.csv)
+        for f in internal.iterdir():
+            record = collect_data(f)
+            writer.writerow(record.csv)
 
     IMG = Path("IMG")
     IMG_path = output.joinpath(IMG)
