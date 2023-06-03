@@ -1,3 +1,10 @@
 click
 ffmpeg-python
 ultralytics
+scikit-learn
+spacy
+unidecode
+joblib
+pandas
+opencv-python
+requests

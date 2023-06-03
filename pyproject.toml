@@ -18,7 +18,10 @@ classifiers = [
     "License :: OSI Approved :: MIT License",
     "Operating System :: OS Independent",
 ]
-requires = ["click"]
+requires = ["click", "ffmpeg-python", "ultralytics"]
 
 [project.urls]
 "Homepage" = "https://github.com/GEOMBOC/QUASI_STABLE"
+
+[project.scripts]
+quasi_stable = "quasi_stable:__main__:cli"
