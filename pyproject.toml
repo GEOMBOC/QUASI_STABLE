@@ -1,0 +1,24 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+name = "GEOMBOC"
+version = "0.0.1"
+authors = [
+  { name="DIEGO RAMIREZ GARRIDO", email="d.ramirezg@uniandes.edu.co" },
+  { name="ISAAC DAVID BERMUDEZ LARA", email="i.bermudezl@uniandes.edu.co" },
+  { name="JUAN JOSE MEJIA ALVAREZ", email="j.mejiaa@uniandes.edu.co" },
+  { name="SANTIAGO MORALES DUARTE", email="s.morales30@uniandes.edu.co" }
+]
+description = "CODEFEST AD ASTRA"
+readme = "README.md"
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "License :: OSI Approved :: MIT License",
+    "Operating System :: OS Independent",
+]
+requires = ["click"]
+
+[project.urls]
+"Homepage" = "https://github.com/GEOMBOC/QUASI_STABLE"
