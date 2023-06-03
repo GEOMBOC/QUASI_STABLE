@@ -46,6 +46,7 @@ def ner_from_file(text_path: Path, output_path: Path, overwrite: bool = True) ->
 ```python
 def ner_from_url(url: str, output_path: Path, overwrite: bool = True) -> None:
 ```
+
 ### CLI
 
 ```bash
