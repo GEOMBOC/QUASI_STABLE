@@ -21,6 +21,10 @@ We trained a model with 4 videos of aerial data provided by the Colombian Air Fo
 
 ## EasyOCR
 
+We implement easyocr library to extract dates, times and coordinates shown in the surveillance video. We have applied a pre-processing to the frame that acts as argument to the functions, thereby reducing the computational complexity of the model. 
+
+NOTE: Class-based approach, do not forget to call the proper instance functions before obtaining relevant parameters. 
+
 ## NER
 
 ## Usage
