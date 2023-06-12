@@ -1,6 +1,6 @@
 # QUASI_STABLE
 
-CODEFEST AD ASTRA 2023
+CODEFEST AD ASTRA 2023 library for object detection from aerial images and NER f. 
 
 ## Members
 
@@ -8,6 +8,15 @@ CODEFEST AD ASTRA 2023
 - ISAAC DAVID BERMUDEZ LARA
 - JUAN JOSE MEJIA ALVAREZ
 - SANTIAGO MORALES DUARTE
+
+## Object detection
+
+We implemented the [mmrotate](https://github.com/mmrotate) library for rotated object recognition.
+
+https://user-images.githubusercontent.com/10410257/154433305-416d129b-60c8-44c7-9ebb-5ba106d3e9d5.MP4
+
+## NER
+
 
 ## Usage
 
