@@ -22,6 +22,22 @@ We trained a model with 4 videos of aerial data provided by the Colombian Air Fo
 
 ![sample](https://github.com/GEOMBOC/QUASI_STABLE/blob/main/sample.png)
 
+### Usage
+
+```python
+def detect_objects_in_video(
+    video_path: Path, output_path: Path, overwrite: bool = True
+) -> None:
+```
+This method generates a csv file with the following structure:
+
+El método debe generar un archivo con el resultado del análisis, en la ruta dada. El formato de este archivo debe ser CSV. Cada fila debe tener la siguiente estructura:
+<ID>, <OBJECT_TYPE>, <TIME>, <COORDINATES_TEXT>
+- <ID> := “ID of the object found”
+- <OBJECT_TYPE> := “Type of object found: VEHICULO, CONSTRUCCIÓN, VIA, OTROS“
+- <TIME> := ”Time of object found: HH:MM:SS (hora militar)”
+- <COORDINATES_TEXT> := ”Coordinate text found in the video when the object was found”
+    
 ## EasyOCR
 
 We implement easyocr library to extract dates, times and coordinates shown in the surveillance video. We have applied a pre-processing to the frame that acts as argument to the functions, thereby reducing the computational complexity of the model. 
