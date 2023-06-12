@@ -33,7 +33,7 @@ We used the pre-configured spacy library in order to obtain an effective NER mod
 
 ## Usage
 
-This can be used as a library or can be used as an python library or as an CLI.
+This can be used as a library or can be used as an python library or as an CLI. Unzip all files before using. 
 
 ### Library
 
