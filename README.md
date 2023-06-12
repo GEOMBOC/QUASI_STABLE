@@ -50,6 +50,8 @@ We used the pre-configured spacy library in order to obtain an effective NER mod
 
 TO ACCESS TRAINED MODEL, GO TO https://drive.google.com/file/d/1egavB44AwGe9ZrpDBaugvuqFTUebaNXD/view?usp=sharing, DOWNLOAD, DECOMPRESS AND POSITION THE FOLDER IN THE PATH SELECTED AT THE BEGGINING OF text.py.
 
+The file has to be decompressed on models/text-model/
+
 ### Usage
 Decompress models.zip BEFORE USING THIS PART. Put result inside QUASI_STABLE root folder.
 Available functions
