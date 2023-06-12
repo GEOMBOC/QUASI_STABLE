@@ -8,7 +8,7 @@ CODEFEST AD ASTRA 2023 library for aerial data object detection from aerial imag
 - ISAAC DAVID BERMUDEZ LARA
 - JUAN JOSE MEJIA ALVAREZ
 - SANTIAGO MORALES DUARTE
-- STIVEN VIVIESCAS
+- CD. STIVEN VIVIESCAS
 
 ## Object detection
 
