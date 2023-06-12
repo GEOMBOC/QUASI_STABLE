@@ -48,27 +48,7 @@ ID, OBJECT_TYPE, TIME, COORDINATES_TEXT
 
 We used the pre-configured spacy library in order to obtain an effective NER model. In order to train the model, we labelled adequate and clean news samples containing relevant entities that are then shown to the user via a JSON file.  
 
-## Usage
-
-This can be used as a library or can be used as an python library or as an CLI. Unzip all files before using. 
-
-### Library
-
-You can import video.py and text.py files.
-
-### Video
-
-Available functions
-
-TODO: give a short description of available functions
-
-```python
-def detect_objects_in_video(
-    video_path: Path, output_path: Path, overwrite: bool = True
-) -> None:
-```
-
-### Text
+### Usage
 Decompress models.zip BEFORE USING THIS PART. Put result inside QUASI_STABLE root folder.
 Available functions
 
@@ -85,6 +65,11 @@ def ner_from_file(text_path: Path, output_path: Path, overwrite: bool = True) ->
 ```python
 def ner_from_url(url: str, output_path: Path, overwrite: bool = True) -> None:
 ```
+
+
+### Library
+
+You can import video.py and text.py files. This can be used as a library or can be used as an python library or as an CLI. Unzip all files before using. 
 
 ### CLI
 
