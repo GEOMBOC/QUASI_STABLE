@@ -27,6 +27,8 @@ NOTE: Class-based approach, do not forget to call the proper instance functions 
 
 ## NER
 
+We used the pre-configured spacy library in order to obtain an effective NER model. In order to train the model, we labelled adequate and clean news samples containing relevant entities that are then shown to the user via a JSON file.  
+
 ## Usage
 
 This can be used as a library or can be used as an python library or as an CLI.
