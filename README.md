@@ -11,12 +11,17 @@ CODEFEST AD ASTRA 2023 library for object detection from aerial images and NER f
 
 ## Object detection
 
-We implemented the [mmrotate](https://github.com/mmrotate) library for rotated object recognition.
+We used the [mmrotate](https://github.com/open-mmlab/mmrotate/) state-of-the-art library for rotated object recognition to train a model with 4 videos of aerial data provided by the Colombian Air Force. 
 
 https://user-images.githubusercontent.com/10410257/154433305-416d129b-60c8-44c7-9ebb-5ba106d3e9d5.MP4
 
-## NER
+The master branch works with **PyTorch 1.8**.
 
+We expanded the video dataset with [aerial-cars-dataset](https://github.com/jekhor/aerial-cars-dataset) to detect vehicles and we finetuned a detector using a pre-trained [detector](https://github.com/open-mmlab/mmrotate/blob/main/configs/oriented_rcnn/oriented_rcnn_r50_fpn_1x_dota_le90.py). We upload a trained model which detects vehicles and constructions. Here's a sample of the model recognition capabilities: 
+
+## EasyOCR
+
+## NER
 
 ## Usage
 
