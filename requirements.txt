@@ -3,6 +3,7 @@ ffmpeg-python
 ultralytics
 scikit-learn
 spacy
+easyocr
 unidecode
 joblib
 pandas
