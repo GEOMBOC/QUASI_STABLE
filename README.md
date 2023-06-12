@@ -48,7 +48,7 @@ ID, OBJECT_TYPE, TIME, COORDINATES_TEXT
 
 We used the pre-configured spacy library in order to obtain an effective NER model. In order to train the model, we labelled adequate and clean news samples containing relevant entities that are then shown to the user via a JSON file. 
 
-TO ACCESS TRAINED MODEL, GO TO https://drive.google.com/file/d/1egavB44AwGe9ZrpDBaugvuqFTUebaNXD/view?usp=sharing, DOWNLOAD AND POSITION IN PATH SELECTED AT THE BEGGINING OF text.py.
+TO ACCESS TRAINED MODEL, GO TO https://drive.google.com/file/d/1egavB44AwGe9ZrpDBaugvuqFTUebaNXD/view?usp=sharing, DOWNLOAD, DECOMPRESS AND POSITION THE FOLDER IN THE PATH SELECTED AT THE BEGGINING OF text.py.
 
 ### Usage
 Decompress models.zip BEFORE USING THIS PART. Put result inside QUASI_STABLE root folder.
