@@ -19,6 +19,8 @@ The master branch works with **PyTorch 1.8**.
 
 We trained a model with 4 videos of aerial data provided by the Colombian Air Force. We expanded the video dataset with [aerial-cars-dataset](https://github.com/jekhor/aerial-cars-dataset) to detect vehicles and we finetuned a detector using a pre-trained [model](https://github.com/open-mmlab/mmrotate/blob/main/configs/oriented_rcnn/oriented_rcnn_r50_fpn_1x_dota_le90.py). We upload a trained model which detects vehicles and constructions, we provide the config and checkpoint files. Here's a sample of the model recognition capabilities: 
 
+https://github.com/GEOMBOC/QUASI_STABLE/blob/main/sample.png
+
 ## EasyOCR
 
 We implement easyocr library to extract dates, times and coordinates shown in the surveillance video. We have applied a pre-processing to the frame that acts as argument to the functions, thereby reducing the computational complexity of the model. 
