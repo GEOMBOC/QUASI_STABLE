@@ -1,13 +1,12 @@
 from dataclasses import dataclass, asdict
 from pathlib import Path
 from json import dumps
-from unidecode import unidecode
-from joblib import load
-import pandas as pd
 import spacy
 import requests
+import shutil
 
-segmenter = spacy.load('models/model-best')
+MODEL = spacy.load("models/text-model")
+
 
 @dataclass
 class TextRecord:
@@ -28,52 +27,45 @@ class TextRecord:
         return dumps(self.__dict__)
 
 
-def ner_from_str(text: str, output_path: Path, overwrite: bool = True) -> None:
-    # do computation
+def named_entity_recognition(text: str, model) -> TextRecord:
+    result = model(text)
 
-    if not overwrite and output_path.exists():
-        raise Exception(f"{output_path} already exists!")
+    organizations = [str(ent) for ent in result.ents if ent.label_ == "ORG"]
+    locations = [str(ent) for ent in result.ents if ent.label_ == "LOC"]
+    people = [str(ent) for ent in result.ents if ent.label_ == "PER"]
+    dates = [str(ent) for ent in result.ents if ent.label_ == "DATE"]
+    misc = [
+        str(ent)
+        for ent in result.ents
+        if ent.label_ in ("MISC", "CIFRA VICTIMAS", "TIPO DAMNIFICADOS")
+    ]
+    impact = [str(ent) for ent in result.ents if ent.label_ == "IMPACT"]
+    return TextRecord(text, organizations, locations, people, dates, misc, impact)
 
-    output_path.mkdir()
 
-    # create data class
-    erase_test_dataclass = extract_tokens(text,segmenter)
+def ner_from_str(text: str, output: Path, overwrite: bool = True) -> None:
+    if not overwrite and output.exists():
+        raise Exception(f"{output} already exists!")
+
+    if output.exists():
+        shutil.rmtree(output)
+
+    output.mkdir()
+
+    text_record = named_entity_recognition(text, MODEL)
 
     result = "result.json"
-    result_path = output_path.joinpath(result)
+    result_path = output.joinpath(result)
 
     with open(result_path, "w") as f:
-        f.write(erase_test_dataclass.json)
+        f.write(text_record.json)
 
 
-def ner_from_file(text_path: Path, output_path: Path, overwrite: bool = True) -> None:
-    with open(text_path,'r') as file:
-        ner_from_str(file.read(),output_path,overwrite)
+def ner_from_file(text: Path, output: Path, overwrite: bool = True) -> None:
+    with open(text, "r") as file:
+        ner_from_str(file.read(), output, overwrite)
 
 
-def ner_from_url(url: str, output_path: Path, overwrite: bool = True) -> None:
-    with requests.get(url) as req:
-        ner_from_str(req.text,output_path,overwrite)
-    
-def classify_text(texto):
-    return "DEFORESTACIÓN"
-
-def extract_tokens(texto, model):
-    doc = model(texto)
-    personas = [str(ent) for ent in doc.ents if ent.label_ == "PER"]
-    lugares = [str(ent) for ent in doc.ents if ent.label_ == "LOC"]
-    fechas = [str(ent) for ent in doc.ents if ent.label_ == "DATE"]
-    cifras = [str(ent) for ent in doc.ents if ent.label_ == "CIFRA"]
-    damnificados = [str(ent) for ent in doc.ents if ent.label_ == "TIPO DAMNIFICADO"]
-    impacto = [str(ent) for ent in doc.ents if ent.label_ == "IMPACT"]
-    organizaciones = [str(ent) for ent in doc.ents if ent.label_ == "ORG"]
-    classification = classify_text(texto)
-    return TextRecord(
-        texto,
-        organizaciones,
-        lugares,
-        personas,
-        fechas,
-        damnificados + impacto,
-        classification
-    )
+def ner_from_url(url: str, output: Path, overwrite: bool = True) -> None:
+    with requests.get(url) as r:
+        ner_from_str(r.text, output, overwrite)
