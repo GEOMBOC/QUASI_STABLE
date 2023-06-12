@@ -1,6 +1,6 @@
 # QUASI_STABLE
 
-CODEFEST AD ASTRA 2023 library for aerial data object detection from aerial images and NER f. 
+CODEFEST AD ASTRA 2023 library for aerial data object detection from aerial images and NER from news cycles and other sources.  
 
 ## Members
 
@@ -8,6 +8,7 @@ CODEFEST AD ASTRA 2023 library for aerial data object detection from aerial imag
 - ISAAC DAVID BERMUDEZ LARA
 - JUAN JOSE MEJIA ALVAREZ
 - SANTIAGO MORALES DUARTE
+- STIVEN VIVIESCAS
 
 ## Object detection
 
